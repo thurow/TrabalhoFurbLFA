@@ -30,32 +30,42 @@ public class Tela extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         textEntry = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textResult = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(870, 670));
         setResizable(false);
 
-        textEntry.setColumns(20);
-        textEntry.setRows(5);
+        textEntry.setColumns(200);
+        textEntry.setRows(100);
+        textEntry.setAlignmentX(0.0F);
+        textEntry.setAlignmentY(0.0F);
         textEntry.setPreferredSize(new java.awt.Dimension(870, 400));
         textEntry.setVerifyInputWhenFocusTarget(false);
         textEntry.setBorder(new NumberedBorder());
         jScrollPane1.setViewportView(textEntry);
 
+        textResult.setEditable(false);
+        textResult.setColumns(20);
+        textResult.setRows(5);
+        textResult.setAlignmentX(0.0F);
+        textResult.setAlignmentY(0.0F);
+        jScrollPane2.setViewportView(textResult);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 233, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -72,7 +82,7 @@ public class Tela extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -98,6 +108,8 @@ public class Tela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea textEntry;
+    private javax.swing.JTextArea textResult;
     // End of variables declaration//GEN-END:variables
 }
