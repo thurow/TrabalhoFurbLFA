@@ -34,6 +34,8 @@ public class Tela extends javax.swing.JFrame {
         textResult = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(870, 670));
+        setMinimumSize(new java.awt.Dimension(870, 670));
         setPreferredSize(new java.awt.Dimension(870, 670));
         setResizable(false);
 
