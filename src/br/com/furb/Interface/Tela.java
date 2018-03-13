@@ -8,7 +8,7 @@ import br.com.furb.Bibliotecas.NumberedBorder;
 
 /**
  *
- * @author gtodesco
+ * @author 
  */
 public class Tela extends javax.swing.JFrame {
 
@@ -32,11 +32,13 @@ public class Tela extends javax.swing.JFrame {
         textEntry = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         textResult = new javax.swing.JTextArea();
+        analisarButton = new javax.swing.JButton();
+        limparButton = new javax.swing.JButton();
+        equipeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(870, 670));
         setMinimumSize(new java.awt.Dimension(870, 670));
-        setPreferredSize(new java.awt.Dimension(870, 670));
         setResizable(false);
 
         textEntry.setColumns(200);
@@ -55,23 +57,49 @@ public class Tela extends javax.swing.JFrame {
         textResult.setAlignmentY(0.0F);
         jScrollPane2.setViewportView(textResult);
 
+        analisarButton.setText("analisar");
+        analisarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                analisarButtonActionPerformed(evt);
+            }
+        });
+
+        limparButton.setText("limpar");
+
+        equipeButton.setText("equipe");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(analisarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(limparButton, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(equipeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(analisarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                    .addComponent(limparButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(equipeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void analisarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analisarButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_analisarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -109,8 +137,11 @@ public class Tela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton analisarButton;
+    private javax.swing.JButton equipeButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton limparButton;
     private javax.swing.JTextArea textEntry;
     private javax.swing.JTextArea textResult;
     // End of variables declaration//GEN-END:variables
