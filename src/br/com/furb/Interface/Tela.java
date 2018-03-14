@@ -6,6 +6,8 @@
 package br.com.furb.Interface;
 import br.com.furb.Bibliotecas.NumberedBorder;
 import br.com.furb.Controladores.AnaliseControlador;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -20,6 +22,8 @@ public class Tela extends javax.swing.JFrame {
     public Tela() {
         initComponents();
         controller = new AnaliseControlador();
+        
+        analisarButton.setIcon(new ImageIcon("src/imagens/play.png"));
     }
 
     /**
@@ -112,6 +116,8 @@ public class Tela extends javax.swing.JFrame {
 
     private void analisarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analisarButtonActionPerformed
         // TODO add your handling code here:
+        String contentText = textEntry.getText();
+        ArrayList result = controller.analisaAction(contentText);
     }//GEN-LAST:event_analisarButtonActionPerformed
 
     private void limpaCampo()

@@ -5,14 +5,29 @@
  */
 package br.com.furb.Controladores;
 
+import br.com.furb.Modelos.AnalisaDados;
+import java.util.ArrayList;
+
 /**
  *
  * @author Alexandre
  */
 public class AnaliseControlador {
-    final String equipe = "Equipe de desenvolvedores: Alexandre Thurow, Gabriel Todesco e Gustavo Merini.";
+    
+    protected AnalisaDados model;
+    
+    public AnaliseControlador()
+    {
+        model = new AnalisaDados();
+    }
     
     public String equipeAction() {
-        return equipe;
+        return model.getDevText();
+    }
+    
+    public ArrayList analisaAction(String param)
+    {
+        ArrayList retorno = model.getAnaliseResult(param);
+        return retorno;
     }
 }
