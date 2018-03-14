@@ -47,12 +47,12 @@
               <Component id="jScrollPane1" min="-2" pref="400" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="analisarButton" pref="54" max="32767" attributes="0"/>
-                  <Component id="limparButton" max="32767" attributes="0"/>
-                  <Component id="equipeButton" max="32767" attributes="0"/>
+                  <Component id="analisarButton" pref="68" max="32767" attributes="0"/>
+                  <Component id="limparButton" alignment="0" max="32767" attributes="0"/>
+                  <Component id="equipeButton" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="102" max="32767" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" pref="166" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -112,11 +112,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="limpar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="limparButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="equipeButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="equipe"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="equipeButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

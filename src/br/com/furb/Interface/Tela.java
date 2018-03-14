@@ -5,6 +5,7 @@
  */
 package br.com.furb.Interface;
 import br.com.furb.Bibliotecas.NumberedBorder;
+import br.com.furb.Controladores.AnaliseControlador;
 
 /**
  *
@@ -12,11 +13,13 @@ import br.com.furb.Bibliotecas.NumberedBorder;
  */
 public class Tela extends javax.swing.JFrame {
 
+    protected AnaliseControlador controller;
     /**
      * Creates new form Tela
      */
     public Tela() {
         initComponents();
+        controller = new AnaliseControlador();
     }
 
     /**
@@ -65,8 +68,18 @@ public class Tela extends javax.swing.JFrame {
         });
 
         limparButton.setText("limpar");
+        limparButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparButtonActionPerformed(evt);
+            }
+        });
 
         equipeButton.setText("equipe");
+        equipeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                equipeButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,11 +100,11 @@ public class Tela extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(analisarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                    .addComponent(analisarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                     .addComponent(limparButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(equipeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,6 +113,23 @@ public class Tela extends javax.swing.JFrame {
     private void analisarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analisarButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_analisarButtonActionPerformed
+
+    private void limpaCampo()
+    {
+        textResult.setText("");
+    }
+    private void equipeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equipeButtonActionPerformed
+        // TODO add your handling code here:
+        String equipe = controller.equipeAction();
+        limpaCampo();
+        textResult.append(equipe);
+    }//GEN-LAST:event_equipeButtonActionPerformed
+
+    private void limparButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparButtonActionPerformed
+        // TODO add your handling code here:
+        limpaCampo();
+        textEntry.setText("");
+    }//GEN-LAST:event_limparButtonActionPerformed
 
     /**
      * @param args the command line arguments
