@@ -119,7 +119,13 @@ public class Tela extends javax.swing.JFrame {
     private void analisarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analisarButtonActionPerformed
         // TODO add your handling code here:
         String contentText = textEntry.getText();
-        ArrayList result = controller.analisaAction(contentText);
+        limpaCampo();
+        try {
+            String result = controller.analisaAction(contentText);
+            textResult.setText(result);
+        } catch (Exception e) {
+            textResult.setText(e.getMessage());
+        }
     }//GEN-LAST:event_analisarButtonActionPerformed
 
     private void limpaCampo()

@@ -25,9 +25,9 @@ public class AnaliseControlador {
         return model.getDevText();
     }
     
-    public ArrayList analisaAction(String param)
+    public String analisaAction(String param)
     {
-        ArrayList retorno = model.getAnaliseResult(param);
+        String retorno = model.getAnaliseResult(param);
         return retorno;
     }
 }

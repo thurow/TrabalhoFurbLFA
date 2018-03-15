@@ -12,13 +12,19 @@ import java.util.ArrayList;
  * @author Alexandre
  */
 public class AnalisaDados {
+    protected ExpressionValidator validator;
+    
+    public AnalisaDados()
+    {
+        validator = new ExpressionValidator();
+    }
 
     public String getDevText()
     {
         return "Equipe de desenvolvedores: Alexandre Thurow, Gabriel Todesco e Gustavo Merini.";
     }
 
-    public ArrayList getAnaliseResult(String param) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getAnaliseResult(String param) {
+        return validator.process(param);
     }
 }
