@@ -24,6 +24,8 @@ public class Tela extends javax.swing.JFrame {
         controller = new AnaliseControlador();
         
         analisarButton.setIcon(new ImageIcon("src/imagens/play.png"));
+        limparButton.setIcon(new ImageIcon("src/imagens/tesoura.png"));
+        equipeButton.setIcon(new ImageIcon("src/imagens/equipe.png"));
     }
 
     /**
