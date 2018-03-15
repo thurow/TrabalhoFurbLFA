@@ -22,8 +22,8 @@ public class ExpressionValidator {
                             + ", qtyKM=" + qtyKM + ", qtyYear=" + qtyYear + "]";
     }
     //private String word;
-    private static final String kmRegex = "[0-9]{1,3}\\.[0-9]{3}|[0-9]{1,3}"; //[0-9]{2,3}\.[0-9]{3}|[0-9]{1}\.[0-9]{3}|[0-9]{1,3}
-    private static final String yearRegex = "\\d{4}";
+    private static final String kmRegex = "^[0-9]{1,3}\\.[0-9]{3}|[0-9]{1,3}"; //[0-9]{2,3}\.[0-9]{3}|[0-9]{1}\.[0-9]{3}|[0-9]{1,3}
+    private static final String yearRegex = "^\\d{4}$";
     private static final String engineRegex = "[1-9]['.'][0-9]";
     private static final String fuelRegex = "Álcool|Biocombustível|Diesel|Gasolina";
     private static final String symbolRegex = "^([Á]|[B]|[D]|[G]|[R])";
@@ -50,17 +50,17 @@ public class ExpressionValidator {
         initialize();
         int currentLine = 1;
         for (String line : strTextArea.split("\r\n")) {
-            for (String word : line.split("\\s")) {
+            for (String word : line.split("\\s+")) {
                 if(Character.isDigit(word.charAt(0))) {
                     if (!validateNumber(word)) {
-                            throw new IllegalArgumentException("KM, ano ou motor inválido na linha " + currentLine);
+                        throw new IllegalArgumentException("KM, ano ou motor inválido na linha " + currentLine);
                     } else {
                             // identifica oq �
 
                     }
                 } else {
                     if (!validateSymbol(word)) {
-                            throw new IllegalArgumentException("Simbolo inv�lido na linha " + currentLine);
+                        throw new IllegalArgumentException("Simbolo inv�lido na linha " + currentLine);
                     }
                 }
 
