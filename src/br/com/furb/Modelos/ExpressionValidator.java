@@ -101,6 +101,16 @@ public class ExpressionValidator {
 	}
 
 	public boolean validateNumber(String word) {
+		/*
+		 * KM vai primeiro pois pode conter 0 no primeiro digito
+		 */
+		matcher = Pattern.compile(kmRegex).matcher(word);
+		if (matcher.find()) {
+			if (Integer.parseInt(word.replaceAll("\\.", "")) <= 200000) {
+				qtyKM++;
+				return true;
+			}
+		}				
 		
 		matcher = Pattern.compile(checkZero_Digit).matcher(word);
 		if (matcher.find()) {
@@ -117,14 +127,7 @@ public class ExpressionValidator {
 		if (matcher.find()) {
 			qtyEngine++;
 			return true;
-		}
-		matcher = Pattern.compile(kmRegex).matcher(word);
-		if (matcher.find()) {
-			if (Integer.parseInt(word.replaceAll("\\.", "")) <= 200000) {
-				qtyKM++;
-				return true;
-			}
-		}
+		}	
 		
 		this.setInvalidEnum(InvalidEnum.INVALID_DIGIT);
 		return false;
