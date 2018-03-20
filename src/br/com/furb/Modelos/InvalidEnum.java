@@ -1,4 +1,4 @@
-package br.com.furb.model;
+package br.com.furb.Modelos;
 
 public enum InvalidEnum {
 	
