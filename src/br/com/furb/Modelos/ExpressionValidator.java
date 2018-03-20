@@ -3,12 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.furb.Modelos;
+package br.com.furb.model;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import br.com.furb.exceptions.InvalidDigitException;
+import br.com.furb.exceptions.InvalidFuelException;
+import br.com.furb.exceptions.InvalidSymbolException;
+import br.com.furb.exceptions.InvalidValueException;
 
 /**
  *
@@ -16,121 +24,163 @@ import java.util.regex.Pattern;
  */
 public class ExpressionValidator {
 
-    @Override
-    public String toString() {
-            return "ExpressionValidator [qtyEngine=" + qtyEngine + ", qtyFuel=" + qtyFuel + ", qtyValue=" + qtyValue
-                            + ", qtyKM=" + qtyKM + ", qtyYear=" + qtyYear + "]";
-    }
-    //private String word;
-    private static final String kmRegex = "[0-9]{1,3}\\.[0-9]{3}|[0-9]{1,3}"; //[0-9]{2,3}\.[0-9]{3}|[0-9]{1}\.[0-9]{3}|[0-9]{1,3}
-    private static final String yearRegex = "\\d{4}";
-    private static final String engineRegex = "[1-9]['.'][0-9]";
-    private static final String fuelRegex = "√Ålcool|Biocombust√≠vel|Diesel|Gasolina";
-    private static final String symbolRegex = "^([√Å]|[B]|[D]|[G]|[R])";
+	@Override
+	public String toString() {
+		return "ExpressionValidator [qtyEngine=" + qtyEngine + ", qtyFuel=" + qtyFuel + ", qtyValue=" + qtyValue
+				+ ", qtyKM=" + qtyKM + ", qtyYear=" + qtyYear + "]";
+	}
 
-    private int qtyEngine;
-    private int qtyFuel;
-    private int qtyValue;
-    private int qtyKM;
-    private int qtyYear;
+	// private String word;
+	private static final String kmRegex = "^([0-9]{1,3}\\.[0-9]{3}|[0-9]{1,3})$"; // [0-9]{2,3}\.[0-9]{3}|[0-9]{1}\.[0-9]{3}|[0-9]{1,3}
+	private static final String yearRegex = "^\\d{4}$";
+	private static final String engineRegex = "^([1-9]['.'][0-9])$";
+	private static final String checkZero_Digit = "^[0]";
+	private static final String fuelRegex = "^(¡lcool|BiocombustÌvel|Diesel|Gasolina)$";
+	private static final String symbolRegex = "^([¡]|[B]|[D]|[G]|[R])";
+	private static final String valueRegex = "^(R\\$[0-9]{1,3}\\.[0-9]{3}\\,[0-9]{2}|R\\$[0-9]{1,3}\\,[0-9]{2})";/// "(R\\$[0-9]{1,3}\\.[0-9]{3}\\,[0-9]{2})";
+	private static final String invalidValueRegex = "(R\\$[0]{2,}|R\\$[0]\\,[0]{2,}|R\\$[0]{1,}[1-9])";
+	private static final String isFuelRegex = "^([¡]|[B]|[D]|[G])";
+	private static final String isValueRegex = "^R\\$";
 
-    public boolean validateword(String word) {
-        return true;
-    }
-    
-    protected void initialize()
-    {
-        qtyEngine = 0;
-        qtyFuel = 0;
-        qtyKM = 0;
-        qtyValue = 0;
-        qtyYear = 0;
-    }
-    public String process(String strTextArea) {
-        initialize();
-        int currentLine = 1;
-        for (String line : strTextArea.split("\r\n")) {
-            for (String word : line.split("\\s")) {
-                if(Character.isDigit(word.charAt(0))) {
-                    if (!validateNumber(word)) {
-                            throw new IllegalArgumentException("KM, ano ou motor inv√°lido na linha " + currentLine);
-                    } else {
-                            // identifica oq ÔøΩ
+	private int qtyEngine;
+	private int qtyFuel;
+	private int qtyValue;
+	private int qtyKM;
+	private int qtyYear;
+	private InvalidEnum invalidEnum;
 
-                    }
-                } else {
-                    if (!validateSymbol(word)) {
-                            throw new IllegalArgumentException("Simbolo invÔøΩlido na linha " + currentLine);
-                    }
-                }
+	private Matcher matcher;
 
-            }
-            currentLine++;
-        }
-        return this.toString();
+	public int getQtyEngine() {
+		return qtyEngine;
+	}
 
-    }
+	public int getQtyFuel() {
+		return qtyFuel;
+	}
 
-    public boolean validateNumber(String word) {
-    	Matcher matcher;
-    	matcher = Pattern.compile(yearRegex).matcher(word);
-    	if (matcher.find()) {
-    		setQtyYear(getQtyYear() + 1);
-    		return true;
-    	}
-    	matcher = Pattern.compile(engineRegex).matcher(word);
-    	if(matcher.find()) {
-    		qtyEngine++;
-    		return true;
-    	}
-    	matcher = Pattern.compile(kmRegex).matcher(word);
-    	if(matcher.find()) {
-            if(Integer.parseInt(word.replaceAll("\\.", "")) <= 200000) {
-                    qtyKM++;
-                    return true;
-            }
-        }
-        return false;
-    }
+	public int getQtyValue() {
+		return qtyValue;
+	}
 
-    private boolean validateSymbol(String word) {
-    	boolean result = true;
-    	Matcher matcher;
-    	matcher = Pattern.compile(symbolRegex).matcher(word);
-    	if (!matcher.find()) {
-    		result = false;
-    	}
-    	return result;
-    }
+	public int getQtyKM() {
+		return qtyKM;
+	}
 
-    private void identifyIsEngine(String word) {
-        /* palavra composta por um digito 1..9, seguido de ponto, seguido de um digito
-        * ex: 1.4
-        */
+	public int getQtyYear() {
+		return qtyYear;
+	}
 
-    }
+	public String process(String strTextArea) {
+		int currentLine = 1;
+		for (String line : strTextArea.split("\r\n")) {
+			for (String word : line.split("\\s+")) {
+				if (Character.isDigit(word.charAt(0))) {
+					if (!validateNumber(word)) {
+						throw new InvalidDigitException("erro na linha - " + currentLine + " motor, ano ou KM inv·lido " + word);
+					} 
+				} else {
+					if (!validateSymbol(word)) {
+						switch (invalidEnum) {
+						case INVALID_VALUE:
+							throw new InvalidValueException("erro na linha - " + currentLine + " valor inv·lido: " + word);
+						case INVALID_FUEL:
+							throw new InvalidFuelException("erro na linha - " + currentLine + " combustÌvel inv·lido: " + word);
+						case INVALID_SYMBOL:
+							throw new InvalidSymbolException("erro na linha - " + currentLine + " sÌmbolo(s) inv·lido(s): " + word);
+						}
+					}
+				}
 
-    private void identifyIsValue(String word) {
-        /*
-        * EX: R$200,00
-        */
+				currentLine++;
+			}
+		}
 
-    }
+	return this.toString();
 
-    private void identifyIsFuel(String word) {
+	}
 
-    }
+	public boolean validateNumber(String word) {
+		/*
+		 * KM vai primeiro pois pode conter 0 no primeiro digito
+		 */
+		matcher = Pattern.compile(kmRegex).matcher(word);
+		if (matcher.find()) {
+			if (Integer.parseInt(word.replaceAll("\\.", "")) <= 200000) {
+				qtyKM++;
+				return true;
+			}
+		}				
+		
+		matcher = Pattern.compile(checkZero_Digit).matcher(word);
+		if (matcher.find()) {
+			this.setInvalidEnum(InvalidEnum.INVALID_DIGIT);
+			return false;
+		}
+		
+		matcher = Pattern.compile(yearRegex).matcher(word);
+		if (matcher.find()) {
+			qtyYear++;
+			return true;
+		}
+		matcher = Pattern.compile(engineRegex).matcher(word);
+		if (matcher.find()) {
+			qtyEngine++;
+			return true;
+		}	
+		
+		this.setInvalidEnum(InvalidEnum.INVALID_DIGIT);
+		return false;
+	}
 
-    private void identifyIsKM(String word) {
+	public boolean validateSymbol(String word) {
 
-    }
-    public int getQtyYear() {
-            return qtyYear;
-    }
-    public void setQtyYear(int qtyYear) {
-            this.qtyYear = qtyYear;
-    }
+		matcher = Pattern.compile(symbolRegex).matcher(word);
+		if (!matcher.find()) {
+			this.setInvalidEnum(InvalidEnum.INVALID_SYMBOL);
+			return false;
+		}
+		
+		matcher = Pattern.compile(isFuelRegex).matcher(word);
+		if(matcher.find()) {
+			matcher = Pattern.compile(fuelRegex).matcher(word);
+			if (matcher.find()) {
+				qtyFuel++;
+				return true;
+			}
+			
+			this.setInvalidEnum(InvalidEnum.INVALID_FUEL);
+			return false;
+		}
 
+		matcher = Pattern.compile(isValueRegex).matcher(word);
+		if (matcher.find()) {
+			matcher = Pattern.compile(invalidValueRegex).matcher(word);
+			if (matcher.find()) {
+				this.setInvalidEnum(InvalidEnum.INVALID_VALUE);
+				return false;
+			}
+			
+			matcher = Pattern.compile(valueRegex).matcher(word);
+			if (matcher.find()) {
+				qtyValue++;
+				return true;
+			}
+			
+			this.setInvalidEnum(InvalidEnum.INVALID_VALUE);
+			return false;			
+		}
+		
+		this.setInvalidEnum(InvalidEnum.INVALID_SYMBOL);
+		return false;
+	}
 
+	public InvalidEnum getInvalidEnum() {
+		return invalidEnum;
+	}
+
+	public void setInvalidEnum(InvalidEnum invalidEnum) {
+		this.invalidEnum = invalidEnum;
+	}
 
 }
