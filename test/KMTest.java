@@ -1,11 +1,11 @@
-package br.com.furb.testes;
+
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import br.com.furb.exceptions.InvalidDigitException;
-import br.com.furb.model.ExpressionValidator;
+import br.com.furb.Excessoes.InvalidDigitException;
+import br.com.furb.Modelos.ExpressionValidator;
 
 public class KMTest {
 
@@ -26,7 +26,7 @@ public class KMTest {
 	@Test
 	public void testInvalidKM3() {
 		ExpressionValidator ex = new ExpressionValidator();
-		// não sera um illegal argument exception pois será incluido no grupo de Ano
+		// nï¿½o sera um illegal argument exception pois serï¿½ incluido no grupo de Ano
 		ex.process("1500");
 		int qty = ex.getQtyKM();
 		assertEquals(0, qty);

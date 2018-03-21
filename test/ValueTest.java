@@ -1,11 +1,11 @@
-package br.com.furb.testes;
+
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import br.com.furb.model.ExpressionValidator;
-import br.com.furb.exceptions.InvalidValueException;
+import br.com.furb.Modelos.ExpressionValidator;
+import br.com.furb.Excessoes.InvalidValueException;
 
 public class ValueTest {
 

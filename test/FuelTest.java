@@ -1,18 +1,18 @@
-package br.com.furb.testes;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import br.com.furb.exceptions.InvalidFuelException;
-import br.com.furb.exceptions.InvalidSymbolException;
-import br.com.furb.model.ExpressionValidator;
+import br.com.furb.Excessoes.InvalidFuelException;
+import br.com.furb.Excessoes.InvalidSymbolException;
+import br.com.furb.Modelos.ExpressionValidator;
 
 public class FuelTest {
 
 	@Test
 	public void testValidFuel1() {
 		ExpressionValidator ex = new ExpressionValidator();
-		ex.process("¡lcool BiocombustÌvel Diesel Gasolina");
+		ex.process("√Ålcool Biocombust√≠vel Diesel Gasolina");
 		int qty = ex.getQtyFuel();
 		assertEquals(4, qty);
 	}
@@ -20,7 +20,7 @@ public class FuelTest {
 	@Test(expected = InvalidFuelException.class) 
 	public void testInvalidValue1() {
 		ExpressionValidator ex = new ExpressionValidator();
-		ex.process("¡lcoole");
+		ex.process("√Ålcoole");
 	}
 	
 	@Test(expected = InvalidSymbolException.class) 

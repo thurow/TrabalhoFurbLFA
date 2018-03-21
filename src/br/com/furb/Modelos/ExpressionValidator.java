@@ -13,10 +13,10 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import br.com.furb.exceptions.InvalidDigitException;
-import br.com.furb.exceptions.InvalidFuelException;
-import br.com.furb.exceptions.InvalidSymbolException;
-import br.com.furb.exceptions.InvalidValueException;
+import br.com.furb.Excessoes.InvalidDigitException;
+import br.com.furb.Excessoes.InvalidFuelException;
+import br.com.furb.Excessoes.InvalidSymbolException;
+import br.com.furb.Excessoes.InvalidValueException;
 
 /**
  *

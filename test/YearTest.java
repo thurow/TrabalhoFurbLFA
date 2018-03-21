@@ -1,11 +1,11 @@
-package br.com.furb.testes;
+
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import br.com.furb.exceptions.InvalidDigitException;
-import br.com.furb.model.ExpressionValidator;
+import br.com.furb.Excessoes.InvalidDigitException;
+import br.com.furb.Modelos.ExpressionValidator;
 
 public class YearTest {
 
@@ -21,7 +21,7 @@ public class YearTest {
 	public void testInvalidYear1() {
 		ExpressionValidator ex = new ExpressionValidator();
 		ex.process("2.001");
-		// n„o sera um illegal argument exception pois ser· incluido no grupo de KM
+		// n√£o sera um illegal argument exception pois ser√° incluido no grupo de KM
 		int qty = ex.getQtyYear();
 		assertEquals(0, qty);		
 	}
@@ -30,7 +30,7 @@ public class YearTest {
 	public void testInvalidYear3() {
 		ExpressionValidator ex = new ExpressionValidator();	
 		ex.process("213");
-		// n„o sera um illegal argument exception pois ser· incluido no grupo de KM
+		// n√£o sera um illegal argument exception pois ser√° incluido no grupo de KM
 		int qty = ex.getQtyYear();
 		assertEquals(0, qty);			
 

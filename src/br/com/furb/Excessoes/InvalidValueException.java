@@ -1,4 +1,4 @@
-package br.com.furb.exceptions;
+package br.com.furb.Excessoes;
 
 public class InvalidValueException extends IllegalArgumentException {
 	
