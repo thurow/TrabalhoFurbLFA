@@ -15,5 +15,5 @@ public enum EnumType {
     KM,
     Year,
     Engine
-    
+
 }
