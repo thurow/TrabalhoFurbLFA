@@ -24,7 +24,7 @@
 # symbolRegex - ^([Á]|[B]|[D]|[G]|[R]);
 
 * Match nos caracteres(case sensitive/acento sensitive) que se iniciam em: Á,B,D,G,R
-# valueRegex - ^(R\\$[0-9]{1,3}\\.[0-9]{3}\\,[0-9]{2}|R\\$[0-9]{1,3}\\,[0-9]{2});/// (R\\$[0-9]{1,3}\\.[0-9]{3}\\,[0-9]{2});
+# valueRegex - ^(R\\$[0-9]{1,3}\\.[0-9]{3}\\,[0-9]{2}|R\\$[0-9]{1,3}\\,[0-9]{2});
 
 * Match nos valores válidos, R$20,00 R$0,32
 # invalidValueRegex - (R\\$[0]{2,}|R\\$[0]\\,[0]{2,}|R\\$[0]{1,}[1-9]);
