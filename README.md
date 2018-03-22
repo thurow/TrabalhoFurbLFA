@@ -17,9 +17,9 @@
 
 * Match no caracter "0" na primeira posição da String, é usado apenas dentro do if de verificação de números
 
-# fuelRegex - ^(Álcool|Biocombustível|Diesel|Gasolina)$
+# fuelRegex - ^(Álcool|Bicombustível|Diesel|Gasolina)$
 
-* Match apenas nas palavras(case sensitive/acento sensitive): Álcool, Biocombustível, Diesel, Gasolina
+* Match apenas nas palavras(case sensitive/acento sensitive): Álcool, Bicombustível, Diesel, Gasolina
 
 # symbolRegex - ^([Á]|[B]|[D]|[G]|[R]);
 

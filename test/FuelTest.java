@@ -12,7 +12,7 @@ public class FuelTest {
     @Test
     public void testValidFuel1() {
         ExpressionValidator ex = new ExpressionValidator();
-        ex.process("Álcool Biocombustível Diesel Gasolina");
+        ex.process("Álcool Bicombustível Diesel Gasolina");
         int qty = ex.getQtyFuel();
         assertEquals(4, qty);
     }

@@ -41,7 +41,7 @@ public class ExpressionValidator {
     private static final String yearRegex = "^\\d{4}$";
     private static final String engineRegex = "^([1-9]['.'][0-9])$";
     private static final String checkZero_Digit = "^[0]";
-    private static final String fuelRegex = "^(Álcool|Biocombustível|Diesel|Gasolina)$";
+    private static final String fuelRegex = "^(Álcool|Bicombustível|Diesel|Gasolina)$";
     private static final String symbolRegex = "^([Á]|[B]|[D]|[G]|[R])";
     private static final String valueRegex = "^(R\\$[0-9]{1,3}\\.[0-9]{3}\\,[0-9]{2}|R\\$[0-9]{1,3}\\,[0-9]{2})$";
     private static final String invalidValueRegex = "(R\\$[0]{2,}|R\\$[0]\\,[0]{2,}|R\\$[0]{1,}[1-9])";
