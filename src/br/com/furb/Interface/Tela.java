@@ -21,6 +21,8 @@ public class Tela extends javax.swing.JFrame {
      */
     public Tela() {
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Carro Parser");
         controller = new AnaliseControlador();
         
         analisarButton.setIcon(new ImageIcon("src/imagens/play.png"));
@@ -143,6 +145,7 @@ public class Tela extends javax.swing.JFrame {
         // TODO add your handling code here:
         limpaCampo();
         textEntry.setText("");
+        textEntry.grabFocus();
     }//GEN-LAST:event_limparButtonActionPerformed
 
     /**

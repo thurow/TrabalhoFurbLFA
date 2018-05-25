@@ -41,7 +41,7 @@ public class ExpressionValidator {
     private static final String yearRegex = "^\\d{4}$";
     private static final String engineRegex = "^([1-9]['.'][0-9])$";
     private static final String checkZero_Digit = "^[0]";
-    private static final String fuelRegex = "^(Álcool|Biocombustível|Diesel|Gasolina)$";
+    private static final String fuelRegex = "^(Álcool|Bicombustível|Diesel|Gasolina)$";
     private static final String symbolRegex = "^([Á]|[B]|[D]|[G]|[R])";
     private static final String valueRegex = "^(R\\$[0-9]{1,3}\\.[0-9]{3}\\,[0-9]{2}|R\\$[0-9]{1,3}\\,[0-9]{2})$";
     private static final String invalidValueRegex = "(R\\$[0]{2,}|R\\$[0]\\,[0]{2,}|R\\$[0]{1,}[1-9])";
@@ -53,8 +53,6 @@ public class ExpressionValidator {
     private int qtyValue;
     private int qtyKM;
     private int qtyYear;
-    private InvalidEnum invalidEnum;
-
     private Matcher matcher;
 
     public int getQtyEngine() {
@@ -99,14 +97,7 @@ public class ExpressionValidator {
                         throw new InvalidDigitException("erro na linha - " + currentLine + " motor, ano ou KM inválido " + word);
                     }
                 } else if (!validateSymbol(word)) {
-                    switch (invalidEnum) {
-                        case INVALID_VALUE:
-                            throw new InvalidValueException("erro na linha - " + currentLine + " valor inválido: " + word);
-                        case INVALID_FUEL:
-                            throw new InvalidFuelException("erro na linha - " + currentLine + " combustível inválido: " + word);
-                        case INVALID_SYMBOL:
-                            throw new InvalidSymbolException("erro na linha - " + currentLine + " símbolo(s) inválido(s): " + word);
-                    }
+
                 }
             }
             currentLine++;
@@ -130,7 +121,6 @@ public class ExpressionValidator {
 
         matcher = Pattern.compile(checkZero_Digit).matcher(word);
         if (matcher.find()) {
-            this.setInvalidEnum(InvalidEnum.INVALID_DIGIT);
             return false;
         }
 
@@ -145,7 +135,6 @@ public class ExpressionValidator {
             return true;
         }
 
-        this.setInvalidEnum(InvalidEnum.INVALID_DIGIT);
         return false;
     }
 
@@ -153,7 +142,6 @@ public class ExpressionValidator {
 
         matcher = Pattern.compile(symbolRegex).matcher(word);
         if (!matcher.find()) {
-            this.setInvalidEnum(InvalidEnum.INVALID_SYMBOL);
             return false;
         }
 
@@ -165,7 +153,6 @@ public class ExpressionValidator {
                 return true;
             }
 
-            this.setInvalidEnum(InvalidEnum.INVALID_FUEL);
             return false;
         }
 
@@ -173,7 +160,6 @@ public class ExpressionValidator {
         if (matcher.find()) {
             matcher = Pattern.compile(invalidValueRegex).matcher(word);
             if (matcher.find()) {
-                this.setInvalidEnum(InvalidEnum.INVALID_VALUE);
                 return false;
             }
 
@@ -183,20 +169,9 @@ public class ExpressionValidator {
                 return true;
             }
 
-            this.setInvalidEnum(InvalidEnum.INVALID_VALUE);
             return false;
         }
 
-        this.setInvalidEnum(InvalidEnum.INVALID_SYMBOL);
         return false;
     }
-
-    public InvalidEnum getInvalidEnum() {
-        return invalidEnum;
-    }
-
-    public void setInvalidEnum(InvalidEnum invalidEnum) {
-        this.invalidEnum = invalidEnum;
-    }
-
 }
